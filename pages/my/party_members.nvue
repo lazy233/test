@@ -1,0 +1,86 @@
+<template>
+	<view>
+		<view v-for="(item,index) in members.length" :key="index" >
+			<u-divider  half-width="1" border-color="#6d6d6d"></u-divider>
+			<view style="display: flex; flex-direction: row; height: 60px;
+				background-color: white; margin-top: 10px; border-radius: 5px;">
+				<view style="width: 20%; margin-left: 2.5%;">
+					<u-avatar :src="members[index].avatar" mode="square" size="60px"></u-avatar>
+				</view>
+				<view style="width: 50%; margin-left: 2.5%;">
+					<view style="font-size: 12; color: black; margin-top: 5px; margin-left: 5%;">
+						<text>{{members[index].name}}  {{members[index].id}}</text>
+					</view>
+					<view style="font-size: 12; color: black; margin-top: 5px; margin-left: 5%;">
+						<text>{{members[index].Party_branch}}</text>
+					</view>	
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				members: [{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张1',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张2',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张3',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张4',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张5',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张6',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张7',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张8',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张9',
+					Party_branch: '第一党支部'
+				},{
+					avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+					id: '123106010721',
+					name: '张10',
+					Party_branch: '第一党支部'
+				}]
+				
+			}
+		},
+	}
+</script>
+
+<style>
+
+</style>

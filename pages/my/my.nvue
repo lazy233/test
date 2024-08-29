@@ -1,0 +1,143 @@
+<template>
+	<view style="background-color: #f8f8f8;">
+		<view>
+			<view style="display: flex; flex-direction: row; height: 20vh; 
+				background: linear-gradient(to bottom, #ff6e32, #ff3731);">
+				<view class="Avator"  @click="avatarClick()">
+					<u-avatar :src="avatar" mode="square" size="12vh"></u-avatar>
+				</view>
+				<view style="width: 70%;">
+					<view style="font-size: 2.5vh; color: white; margin-top: 5vh; margin-left: 5%;">
+						{{name}}
+					</view>
+					<view style="font-size: 2vh; color: white; margin-top: 1vh; margin-left: 5%;">
+						{{Party_branch}}
+					</view>
+					<view style="font-size: 2vh; color: white; margin-top: 1vh; margin-left: 5%;">
+						{{id}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="set-line" hover-class="set-line-hover" @click="ToParty_members()">
+			<uni-icons type="person" size="4vh" class="icons"></uni-icons>
+			<view class="line-text">个人信息</view>
+			<view class="line-image">
+				<image style="height: 2vh;" src="../../static/my/right.svg"></image>
+			</view>
+		</view>
+		<view class="set-line" hover-class="set-line-hover" @click="ToParty_members()">
+			<uni-icons type="staff" size="4vh" class="icons"></uni-icons>
+			<view class="line-text">支部成员</view>
+			<view class="line-image">
+				<image style="height: 2vh;" src="../../static/my/right.svg"></image>
+			</view>
+		</view>
+		<view class="set-line" hover-class="set-line-hover" @click="ToSetting()">
+			<uni-icons type="gear" size="4vh" class="icons"></uni-icons>
+			<view class="line-text">系统设置</view>			
+			<view class="line-image">
+				<image style="height: 2vh;" src="../../static/my/right.svg"></image>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				// avatar: 'https://tse4-mm.cn.bing.net/th/id/OIP-C.QOwDLGx_n65czR82gHWx8wAAAA?rs=1&pid=ImgDetMain',
+				avatar: '',
+				id: '学号: 123106010721',
+				name: '张三',
+				Party_branch: '第一党支部'
+			}
+		},
+		methods: {
+			// 去登录界面
+			toLogin() {
+				console.log('toLogin')
+				uni.navigateTo({
+					url:'/pages/my/login'
+				})
+			},
+			// 退出登录
+			quitLogin() {
+				uni.showToast({
+					title: '已退出登录',
+					icon: 'success',					
+				})
+				setTimeout(function() {
+					this.ifLogin = false
+				}, 500); 
+			},
+			ToParty_members(){
+				console.log('ToParty_members')
+				uni.navigateTo({
+					url:'/pages/my/party_members'
+				})
+			},
+			ToSetting(){
+				console.log('ToSetting')
+				uni.navigateTo({
+					url:'/pages/my/setting'
+				})
+			},
+			// 修改头像
+			avatarClick() {
+				console.log('avatarClick')
+				uni.chooseImage({
+					success(res) {
+						console.log(res)
+						console.log(res.tempFilePaths[0])
+						this.avatar = res.tempFilePaths[0]
+					}
+				})
+			},
+		},		
+	}
+</script>
+
+<style lang="scss">
+	.Avator{
+		width: 30%; 
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.set-line{
+		display: flex; 
+		flex-direction: row; 
+		height: 6vh; 
+		background-color: white; 
+		margin-top: 1.5vh;
+	}
+	.set-line-hover{
+		background-color: aliceblue;
+	}
+	.icons{
+		width: 10%;
+		margin-left: 2.5%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.line-text{
+		line-height: 6vh;
+		width: 70%;
+		margin-left: 2.5%;
+		font-size: 2vh;
+	}
+	.line-image{
+		width: 20%;
+		margin-right: 5%;
+		height: 6vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

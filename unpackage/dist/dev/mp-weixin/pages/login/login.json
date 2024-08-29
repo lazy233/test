@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "登录",
+  "onReachBottomDistance": 0,
+  "usingComponents": {
+    "uni-icons": "/node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons"
+  }
+}

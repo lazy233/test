@@ -1,0 +1,95 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uni-ui 规则如下配置
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"onReachBottomDistance": 0
+			}
+		},	
+		{
+			"path": "pages/login/changePwd",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/dynamic/dynamic",
+			"style": {
+				"navigationBarTitleText": "动态"
+			}
+		},
+		{
+			"path": "pages/learn/learn",
+			"style": {
+				"navigationBarTitleText": "学习"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/my/party_members",
+			"style": {
+				"navigationBarTitleText": "党成员"
+			}
+		},
+		{
+			"path": "pages/my/setting",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+			"pagePath": "pages/home/home",
+			"iconPath": "static/tabbar/icon/home.png",
+			"selectedIconPath": "static/tabbar/selectedIcon/home.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/dynamic/dynamic",
+			"iconPath": "static/tabbar/icon/dynamic.png",
+			"selectedIconPath": "static/tabbar/selectedIcon/dynamic.png",
+			"text": "动态"
+		}, {
+			"pagePath": "pages/learn/learn",
+			"iconPath": "static/tabbar/icon/Learn.png",
+			"selectedIconPath": "static/tabbar/selectedIcon/Learn.png",
+			"text": "学习"
+		}, {
+			"pagePath": "pages/my/my",
+			"iconPath": "static/tabbar/icon/my.png",
+			"selectedIconPath": "static/tabbar/selectedIcon/my.png",
+			"text": "我的"
+		}]
+	},
+	"uniIdRouter": {}
+}

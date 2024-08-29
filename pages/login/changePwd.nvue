@@ -1,0 +1,140 @@
+<template>
+	<view>
+		<view style="height: 20vh;">
+			<image src="../../static/login/智慧党建.png" style="height: 15vh; width: 30%; margin-left: 35%; margin-top: 5vh;"></image>
+		</view>
+		<view style="height: 10vh; line-height: 10vh; font-size: 2.2vh; color: #abbedb; text-align: center;">
+			忘记密码
+		</view>
+		<view style="width: 78%; margin-left: 11%;">
+			<view class="login-account">
+				<view style="width: 20%; text-align: left; height: 4vh; line-height: 4vh; font-size: 1.5vh; display: flex; flex-direction: row;">
+					+86
+					<image src="../../static/login/xia.svg" style="height: 4vh; width: 40%; line-height: 4vh;"></image>
+					<view style="color: #abbedb;">|</view>
+				</view>
+				<input placeholder-class="placeholder_class" type="text" placeholder="请输入手机号" v-model="phone"
+				 style="width: 50%; height: 4vh; line-height: 4vh; font-size: 2vh;;"/>
+				 <view style="width: 35%;">
+					 <button v-if="sixty==0" class="getCode" @click="getCode()">获取验证码</button>
+					 <button v-else class="getCode">获取验证码 {{sixty}}</button>
+				 </view>
+			</view>
+			<view class="login-password">
+				<view style="width: 20%; text-align: left; line-height: 4vh; height: 4vh; font-size: 1.5vh;">验证码</view>
+				<input placeholder-class="placeholder_class" type="text" placeholder="请输入验证码" v-model="code"
+				 style="width: 80%; height: 4vh; line-height: 4vh; font-size: 2vh;" />
+			</view>
+			<view class="login-password">
+				<view style="width: 20%; text-align: left; line-height: 4vh; height: 4vh; font-size: 1.5vh;">新密码</view>
+				<input placeholder-class="placeholder_class" :type="Pwd_type1" placeholder="请输入新密码" v-model="password"
+				 style="width: 65%; height: 4vh; line-height: 4vh; font-size: 2vh;" />
+				<view v-if="Pwd_type1 === 'password'" style="width: 15%;">
+					<image class="eye" src="../../static/login/no_eye.svg" @click="Pwd_type1 = 'text'"></image>
+				</view>
+				<view v-else style="width: 15%;">
+					<image class="eye" src="../../static/login/eye.svg" @click="Pwd_type1 = 'password'"></image>
+				</view>
+			</view>
+			<view class="login-password">
+				<view style="width: 20%; text-align: left; line-height: 4vh; height: 4vh; font-size: 1.5vh;">确认密码</view>
+				<input placeholder-class="placeholder_class" :type="Pwd_type2" placeholder="请再次输入新密码" v-model="password_again"
+				 style="width: 65%; height: 4vh; line-height: 4vh; font-size: 2vh;" />
+				 <view v-if="Pwd_type2 === 'password'" style="width: 15%;">
+				 	<image class="eye" src="../../static/login/no_eye.svg" @click="Pwd_type2 = 'text'"></image>
+				 </view>
+				 <view v-else style="width: 15%;">
+				 	<image class="eye" src="../../static/login/eye.svg" @click="Pwd_type2 = 'password'"></image>
+				 </view>
+			</view>
+			<view>
+				<button class="login-button" style="margin-top: 5vh;" @click="changePwd()">修改密码</button>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data () {
+			return {			
+				phone: '',
+				code:'',
+				password: '',
+				password_again: '',
+				Pwd_type1: 'password',
+				Pwd_type2: 'password',
+				sixty: 0,
+			}
+		},
+		methods: {
+			getCode(){
+				console.log('code')	
+				this.sixty = 60
+				this.countTime()
+			},
+			countTime() {
+				let that = this;
+				var timer = setInterval(function() {
+					that.sixty -= 1;
+					if (that.sixty == 0) {
+						clearInterval(timer);
+					}
+				}, 1000);
+			},
+			changePwd(){
+				console.log('修改密码')
+			}
+		}
+	}
+</script>
+
+<style>
+	
+.login-account{
+	display: flex;
+	flex-direction: row; 
+	height: 4vh;
+	border-bottom: 1px solid black;
+}
+.login-password{
+	display: flex;
+	flex-direction: row; 
+	height: 4vh;
+	margin-top: 2vh;
+	border-bottom: 1px solid black;
+}
+
+.placeholder_class{
+	font-size: 1.5vh;
+	line-height: 4vh;
+	color: #abbedb;
+}
+.login-button{
+	width: 100%; 
+	height: 5.5vh; 
+	line-height: 5.5vh;
+	background-color: #ff4a32;
+	border-radius: 3vh;
+	text-align: center;
+	font-size: 1.5vh;
+	color: white;	
+}
+.getCode{
+	background-color: #fbeeee;
+	text-align: center; 
+	height: 3vh;
+	line-height: 3vh;
+	margin-top: 0.5vh;
+	font-size: 1.5vh;
+	color: #fc4c34;
+	border-radius: 20px;
+}
+.eye{
+	width: 80%; 
+	height: 2vh; 
+	line-height: 2vh; 
+	margin-left: 10%; 
+	margin-top: 1vh;
+}
+</style>

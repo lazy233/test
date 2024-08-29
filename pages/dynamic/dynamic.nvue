@@ -1,0 +1,192 @@
+<template>
+	<view>
+		<view style="height: 8vh; width: 100%; display: flex; flex-direction: row; border-bottom: 1px #abbedb solid; background-color: white;">
+			<view style="width: 25%;">
+				<view :class="[type === 1 ? 'on_nav' : 'nav']" @click="type = 1">党建要闻</view>
+			</view>
+			<view style="width: 25%;">
+				<view :class="[type === 2 ? 'on_nav' : 'nav']" @click="type = 2">通知公告</view>
+			</view>
+			<view style="width: 25%;">
+				<view :class="[type === 3 ? 'on_nav' : 'nav']" @click="type = 3">党务公开</view>
+			</view>
+			<view style="width: 25%;">
+				<view :class="[type === 4 ? 'on_nav' : 'nav']" @click="type = 4">党内公示</view>
+			</view>
+		</view>
+		<view style="height: 8vh; width: 100%; display: flex; flex-direction: row; overflow-x: auto; background-color: white;">
+			<view :class="[list_type === index ? 'on_list' : 'list']" v-for="(item,index) in list.length" @click="list_type = index">
+				{{list[index]}}
+			</view>
+		</view>
+		<view style="margin-top: 1vh;"></view>
+		<view>
+			<view v-for="(item,index) in newsCards.length" :key="index" @click="newsPage(index)" >
+				<view v-if="list[list_type] === '全部' || list[list_type] === newsCards[item].title">
+					<view v-if="newsCards[item].url === ''" style="width: 90%; height: 12vh; margin-left: 5%; border-bottom: 1px solid #abbedb; display: flex; flex-direction: row;">
+						<view style="width: 60%;">
+							<view class="text1">
+								<text>{{newsCards[item].text}}</text>
+							</view>
+							<view class="title1">
+								<text style="width: 25%;">{{newsCards[item].title}}</text>
+								<text style="width: 75%;">{{newsCards[item].date}}</text>
+							</view>	
+						</view>
+					</view>
+					<view v-else style="width: 90%; height: 14vh; margin-left: 5%; border-bottom: 1px solid #abbedb; display: flex; flex-direction: row;">
+						<view style="width: 60%;">
+							<view class="text2">
+								<text>{{newsCards[item].text}}</text>
+							</view>
+							<view class="title2">
+								<text style="width: 25%;">{{newsCards[item].title}}</text>
+								<text style="width: 75%;">{{newsCards[item].date}}</text>
+							</view>	
+						</view>
+						<view style="width: 40%;">
+							<image :src="newsCards[item].url" mode="scaleToFill" style="margin-top: 1vh; margin-left: 10%; height: 12vh; width: 90%;"></image>
+						</view>
+					</view>
+				</view>
+			</view> 
+		</view>
+	</view>
+	
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				type: 1,
+				list_type : 0,
+				list: ['全部', '理论学习', '党日活动', '组织建设', '党建要闻'],
+				newsCards: [{
+					url: '../../static/dynamic/1.png',
+					text: '“不忘初心牢记使命听党话跟党走”主题竞赛',
+					title: '理论学习',
+					date: "2022-09-13",
+				},
+				{
+					url: '',
+					text: '学习党史系列：党史中的主要人物',
+					title: '党日活动',
+					date: "2022-09-11",
+				},
+				{
+					url: '../../static/dynamic/2.png',
+					text: '关于新形势下党内政治生活的若干准则关于新形势下党内政治生活的若干准则',
+					title: '组织建设',
+					date: "2022-09-11"
+				}],
+			}
+		},
+	}
+</script>
+
+<style>
+.on_nav{
+	width: 70%;
+	margin-left: 15%;
+	height: 8vh; 
+	line-height: 8vh;
+	font-size: 2vh;
+	text-align: center;
+	border-bottom: 2px #ff6c58 solid;
+	color: #ff6c58;
+}
+.nav{
+	width: 70%;
+	margin-left: 15%;
+	height: 8vh; 
+	line-height: 8vh;
+	font-size: 2vh;
+	text-align: center;
+}
+.on_list{
+	height: 4vh;
+	line-height: 4vh;
+	margin-top: 2vh;
+	width: 20%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	text-align: center;
+	background-color: #ff4a32;
+	color: white;
+	font-size: 2vh;
+}
+.list{
+	height: 4vh;
+	line-height: 4vh;
+	margin-top: 2vh;
+	width: 20%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	text-align: center;
+	background-color: #eaeaea;
+	color: #666666;
+	font-size: 2vh;
+}
+.text1{
+	height: 8vh;
+	font-size: 2vh;
+	line-height: 4vh;
+	// 垂直居中
+	// flex-direction: column;
+	// justify-content: center;
+	// align-items: center;
+	
+	color: #000;
+	text-align: left;
+	
+	overflow: hidden;
+	word-break: break-all; 
+	text-overflow:ellipsis; 
+	display: -webkit-box; 
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2; 
+	
+}
+.title1{
+	height: 4vh;
+	line-height: 3vh;
+	display: flex;
+	flex-direction: row;
+	font-size: 1.8vh;
+	color: #abbedb;
+	text-align: left;
+	overflow: hidden;
+}
+.text2{
+	height: 8vh;
+	font-size: 2vh;
+	line-height: 4vh;
+	margin-top: 1vh;
+
+	// flex-direction: column;
+	// justify-content: center;
+	// align-items: center;
+	color: #000;
+	text-align: left;
+	
+	overflow: hidden;
+	word-break: break-all; 
+	text-overflow:ellipsis; 
+	display: -webkit-box; 
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2; 
+	
+}
+.title2{
+	height: 4vh;
+	line-height: 3vh;
+	margin-top: 1vh;
+	display: flex;
+	flex-direction: row;
+	font-size: 1.8vh;
+	color: #abbedb;
+	text-align: left;
+	overflow: hidden;
+}
+</style>

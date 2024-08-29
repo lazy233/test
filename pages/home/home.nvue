@@ -1,0 +1,215 @@
+<template>
+	<view>
+		<uni-swiper-dot class="uni-swiper-dot-box" @clickItem=clickItem :info="info" :current="current" :mode="mode"
+			:dots-styles="dotsStyles" field="content">
+			<swiper class="swiper-box" @change="change" :current="swiperDotIndex" :autoplay="autoplay" :interval="interval" :circular="circular">
+				<swiper-item v-for="(item, index) in info.length" :key="index">
+					<view class="swiper-item" :class="'swiper-item' + index">
+						<image :src="info[item].url" style="width: 100%;"></image>
+					</view>
+				</swiper-item>
+			</swiper>
+		</uni-swiper-dot>
+		<view style="height: 15vh; width: 100%; display: flex; flex-direction: row;">
+			<view style="width: 20%;">
+				<image src="../../static/home/catalogue/1.png" style="width: 70%; margin-left: 15%; height: 8vh; margin-top: 2vh;"></image>
+				<view style="font-size: 2vh; line-height: 3vh; text-align: center; margin-top: 1vh;">党务公开</view>
+			</view>
+			<view style="width: 20%;">
+				<image src="../../static/home/catalogue/2.png" style="width: 70%; margin-left: 15%; height: 8vh; margin-top: 2vh;"></image>
+				<view style="font-size: 2vh; line-height: 3vh; text-align: center; margin-top: 1vh;">党建要闻</view>
+			</view>
+			<view style="width: 20%;">
+				<image src="../../static/home/catalogue/3.png" style="width: 70%; margin-left: 15%; height: 8vh; margin-top: 2vh;"></image>
+				<view style="font-size: 2vh; line-height: 3vh; text-align: center; margin-top: 1vh;">通知公告</view>
+			</view>
+			<view style="width: 20%;">
+				<image src="../../static/home/catalogue/4.png" style="width: 70%; margin-left: 15%; height: 8vh; margin-top: 2vh;"></image>
+				<view style="font-size: 2vh; line-height: 3vh; text-align: center; margin-top: 1vh;">党员课题</view>
+			</view>
+			<view style="width: 20%;">
+				<image src="../../static/home/catalogue/5.png" style="width: 70%; margin-left: 15%; height: 8vh; margin-top: 2vh;"></image>
+				<view style="font-size: 2vh; line-height: 3vh; text-align: center; margin-top: 1vh;">查看更多</view>
+			</view>
+		</view>
+		<view style="margin-top:3vh;"></view>
+		<view>
+			<view v-for="(item,index) in newsCards.length" :key="index" @click="newsPage(index)" >
+				<view v-if="newsCards[item].url === ''" style="width: 90%; height: 12vh; margin-left: 5%; border-bottom: 1px solid #abbedb; display: flex; flex-direction: row;">
+					<view style="width: 60%;">
+						<view class="text1">
+							<text>{{newsCards[item].text}}</text>
+						</view>
+						<view class="title1">
+							<text style="width: 25%;">{{newsCards[item].title}}</text>
+							<text style="width: 75%;">{{newsCards[item].date}}</text>
+						</view>	
+					</view>
+				</view>
+				<view v-else style="width: 90%; height: 14vh; margin-left: 5%; border-bottom: 1px solid #abbedb; display: flex; flex-direction: row;">
+					<view style="width: 60%;">
+						<view class="text2">
+							<text>{{newsCards[item].text}}</text>
+						</view>
+						<view class="title2">
+							<text style="width: 25%;">{{newsCards[item].title}}</text>
+							<text style="width: 75%;">{{newsCards[item].date}}</text>
+						</view>	
+					</view>
+					<view style="width: 40%;">
+						<image :src="newsCards[item].url" mode="scaleToFill" style="margin-top: 1vh; margin-left: 10%; height: 12vh; width: 90%;"></image>
+					</view>
+				</view>
+			</view> 
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data(){
+			return {
+				// 轮播的图片
+				info: [{
+					url: '../../static/home/swiper/1.jpg',
+				},
+				{
+					url: '../../static/home/swiper/2.jpg',
+				},
+				{
+					url: '../../static/home/swiper/3.jpg',
+				}],
+				
+				dotsStyles: {	
+					backgroundColor: 'rgba(255, 90, 95,0.3)',
+					border: '1px rgba(255, 90, 95,0.3) solid',
+					color: '#fff',
+					selectedBackgroundColor: 'rgba(255, 90, 95,0.9)',
+					selectedBorder: '1px rgba(255, 90, 95,0.9) solid'
+				},
+				swiperDotIndex: 0,
+				current: 0,
+				mode: 'dot',
+				// 是否自动切换轮播图
+				autoplay: true,
+				// 切换时间
+				interval: 5000,
+				// 循环切换
+				circular: true,
+				
+				newsCards: [{
+					url: '../../static/home/swiper/1.jpg',
+					text: '“不忘初心牢记使命听党话跟党走”主题竞赛',
+					title: '在线考试',
+					date: "2022-09-13",
+				},
+				{
+					url: '',
+					text: '学习党史系列：党史中的主要人物',
+					title: '党史人物',
+					date: "2022-09-11",
+				},
+				{
+					url: '../../static/home/swiper/2.jpg',
+					text: '关于新形势下党内政治生活的若干准则关于新形势下党内政治生活的若干准则',
+					title: '党章党规',
+					date: "2022-09-11"
+				}],
+				
+			}
+		},
+		methods: {
+			// 轮播
+			change(e) {
+				this.current = e.detail.current
+			},
+			clickItem(e) {
+				this.swiperDotIndex = e
+			},
+			newsPage(index){
+				console.log(index)
+			},
+		},
+
+	}
+</script>
+
+<style lang="scss">
+	.swiper-box {
+		height: 30vh;
+		width: 100%;
+	}
+
+	.swiper-item {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 30vh;
+		width: 100%;
+		color: #fff;
+	}	
+	.text1{
+		height: 8vh;
+		font-size: 2vh;
+		line-height: 4vh;
+		// 垂直居中
+		// flex-direction: column;
+		// justify-content: center;
+		// align-items: center;
+		
+		color: #000;
+		text-align: left;
+		
+		overflow: hidden;
+		word-break: break-all; 
+		text-overflow:ellipsis; 
+		display: -webkit-box; 
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2; 
+		
+	}
+	.title1{
+		height: 4vh;
+		line-height: 3vh;
+		display: flex;
+		flex-direction: row;
+		font-size: 1.8vh;
+		color: #abbedb;
+		text-align: left;
+		overflow: hidden;
+	}
+	.text2{
+		height: 8vh;
+		font-size: 2vh;
+		line-height: 4vh;
+		margin-top: 1vh;
+	
+		// flex-direction: column;
+		// justify-content: center;
+		// align-items: center;
+		color: #000;
+		text-align: left;
+		
+		overflow: hidden;
+		word-break: break-all; 
+		text-overflow:ellipsis; 
+		display: -webkit-box; 
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2; 
+		
+	}
+	.title2{
+		height: 4vh;
+		line-height: 3vh;
+		margin-top: 1vh;
+		display: flex;
+		flex-direction: row;
+		font-size: 1.8vh;
+		color: #abbedb;
+		text-align: left;
+		overflow: hidden;
+	}
+</style>

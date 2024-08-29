@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "党成员",
+  "usingComponents": {
+    "u-divider": "/node-modules/uview-ui/components/u-divider/u-divider",
+    "u-avatar": "/node-modules/uview-ui/components/u-avatar/u-avatar"
+  }
+}
